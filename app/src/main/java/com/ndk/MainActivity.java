@@ -16,4 +16,7 @@ public class MainActivity extends AppCompatActivity {
     public void onSave(View view){
 
     }
+    static {
+        System.loadLibrary("yuv420");
+    }
 }

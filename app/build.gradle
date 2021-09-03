@@ -14,12 +14,23 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        //1.指定生成模块名，架构
+        ndk {
+            moduleName "yuv420"  //生成的so名字
+            ldLibs "log", "z", "m"    //添加依赖库文件，因为有log打印等
+            abiFilters "arm64-v8a", "armeabi-v7a", "x86" //输出指定cpu体系结构下的so库。
+        }
     }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
         }
     }
     externalNativeBuild {
@@ -31,6 +42,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    ndkVersion '20.0.5594570'
 }
 
 dependencies {
